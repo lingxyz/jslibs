@@ -1,15 +1,10 @@
-# proxyhttp
+# jslibs
 
-node 接口转发中间件（代理）
+JavaScript & Node.js Libraries.
 
-```js
-var app = express()
-
-// parse body for send post data
-var bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-// 本地调用测试环境 api, 需要连接 vpn
-app.use("/api", require("proxyhttp")())
-```
+- 网络：http、websocket ...
+  - [http-proxy](http-proxy), Node.js http proxy middleware
+- Vue：filter、directive ...
+- reset：reset, base ...
+  - [rem.js](reset/rem.js), 根据移动端窗口宽度进行rem配置和动态计算。
+- 工具类：

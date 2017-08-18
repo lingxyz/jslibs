@@ -1,2 +1,8 @@
+# mac dir
 .DS_Store
+
+# npm packages
 node_modules
+
+# build or output
+dist
