@@ -1,0 +1,22 @@
+﻿/* 大转盘样式 */
+.turnplate{
+	width: 100%;
+	padding-bottom: 100%;
+	position: relative;
+	background-image: url(turnplate-bg.png);
+	background-size: cover;
+}
+.turnplate canvas{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width:100%;
+	height: 100%;
+}
+.turnplate img.pointer{
+	position:absolute;
+	width:31.5%;
+	height:42.5%;
+	left:34.6%;
+	top:23%;
+}

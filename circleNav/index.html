@@ -1,0 +1,145 @@
+<!-- todo: 
+	若支持PC 加 mouse 事件 
+	若支持低端版本 用jquery.rotate.js代替css3 rotate 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>手机圆形旋转菜单</title>
+
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background: url('bg.png') no-repeat center top;
+			background-size: cover;
+		}
+
+		/* 圆形导航 */
+		#circleNav {
+			background-color: #e1e1e1;
+			width: 360px;
+			height: 360px;
+			border-radius: 180px;
+			position: relative;
+			background: #daebf9;
+			margin: 150px 0 0 80px;
+		}
+
+		/* 圆心 */
+		#circleNav .center {
+			background: #fff;
+			width: 100px;
+			height: 100px;
+			border-radius: 50px;
+			position: absolute;
+			left: 130px;
+			top: 130px;
+			background: url('center.png') no-repeat center center;
+			background-size: cover;
+		}
+		/* 菜单子项 */
+		.item {
+			position: absolute;
+			width: 66px; 
+			height: 66px;
+			text-align: center;
+			color: #fff;
+			background: #b2e49c;
+		}
+		.item:nth-child(2n) {
+			background: #85cbe4;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- 圆形菜单: 半径 oR = 150px -->
+	<div id="circleNav">
+		<!-- 圆心: 半径 iR = 50px -->
+		<div class="center"></div>
+
+		<!-- 菜单子项: 8个 -->
+		<a href="http://baidu.com"  class="item item1">1</a>
+		<a href="http://baidu.com"  class="item item2">2</a>
+		<a href="http://baidu.com"  class="item item3">3</a>
+		<a href="http://baidu.com"  class="item item4">4</a>
+		<a href="http://baidu.com"  class="item item5">5</a>
+		<a href="http://baidu.com"  class="item item6">6</a>
+		<a href="http://baidu.com"  class="item item7">7</a>
+		<a href="http://baidu.com"  class="item item8">8</a>
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var or = 180,		// 大圆半径
+			ir = 50,		// 小圆半径
+			mWidth = 66,	// 子菜单宽度
+			mDLen = Math.sqrt(2 * Math.pow(mWidth,2)),	// 对角线长度
+			offset = $('#circleNav').offset();			// 大圆左上角相对page坐标
+			
+		var obj = {
+			init: function() {
+				this.setPosition()
+				this.bindEvent()
+			},
+
+			// 初始化位置
+			setPosition: function() {
+				// 夹角范围
+				var degLength = 360/$('.item').length
+
+				// 设置坐标
+				$('.item').each(function(index, item) {
+					var point =	{
+						x: parseInt((Math.cos(Math.PI * (-90 + degLength * index)/180) * (ir + ((or - ir - mDLen)/2) + mDLen/2) ) + or + offset.left - mWidth/2 ),
+						y: parseInt( (Math.sin(Math.PI * (-90 + degLength * index)/180) *  (ir + ((or - ir - mDLen)/2) + mDLen/2) ) + or + offset.top - mWidth/2 )
+					}
+					$(item).offset({top: point.y, left: point.x});
+
+				})
+			},
+
+			// 事件绑定
+			bindEvent: function() {
+				var preX, preY,		// 上一次鼠标点的坐标
+					curX, curY,		// 本次鼠标点的坐标
+					preAngle,		// 上一次鼠标点与圆心的X轴形成的角度(弧度单位)
+					transferAngle,	// 当前鼠标点与上一次preAngle之间变化的角度
+					deg = 0;		// 旋转角度
+		
+				// 触摸开始事件
+				$("#circleNav").on('touchstart', function(event){
+					preX = event.clientX || event.originalEvent.changedTouches[0].clientX;
+					preY = event.clientY || event.originalEvent.changedTouches[0].clientY;
+					// 计算当前点击的点与圆心的X轴的夹角(弧度) --> 上半圆为负(0 ~ -180), 下半圆未正[0 ~ 180]
+					preAngle = Math.atan2(preY - or - offset.top, preX - or - offset.left);
+				});
+		
+				// 触摸移动事件
+				$("#circleNav").on('touchmove', function(event){
+					curX = event.clientX || event.originalEvent.changedTouches[0].clientX;
+					curY = event.clientY || event.originalEvent.changedTouches[0].clientY;
+					// 计算当前点击的点与圆心的X轴的夹角(弧度) --> 上半圆为负(0 ~ -180), 下半圆未正[0 ~ 180]
+					var curAngle = Math.atan2(curY - or - offset.top, curX - or - offset.left);
+					transferAngle = curAngle - preAngle;
+					deg += (transferAngle * 180 / Math.PI);
+					$("#circleNav").css("transform","rotate("+deg+"deg)");
+					for( var i = 1 ; i <= $('.item').length ; i++ ){
+						$(".item"+i).css("transform","rotate("+-deg+"deg)");
+					}
+					preX = curX;
+					preY = curY;
+					preAngle = curAngle;
+				});
+			}
+		};
+
+		obj.init();
+	</script>
+</body>
+</html>
