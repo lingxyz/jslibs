@@ -1,0 +1,28 @@
+{
+  "name": "git-webhooks",
+  "version": "1.0.0",
+  "description": "a project about node webhook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhanglingfe/webhook.git"
+  },
+  "keywords": [
+    "webhook",
+    "node",
+    "shell"
+  ],
+  "author": "lingzZ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhanglingfe/webhook/issues"
+  },
+  "homepage": "https://github.com/zhanglingfe/webhook#readme",
+  "devDependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1"
+  }
+}

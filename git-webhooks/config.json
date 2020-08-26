@@ -1,0 +1,14 @@
+{
+	"port": "9000",
+	"list": [{
+		"remote": "/webhook/webhook",
+		"path": "./restart.sh"
+	}, {
+		"remote": "/webhook/novel",
+		"path": "./restart-novel.sh",
+		"secret": {
+			"name": "token",
+			"value": "zhanglingfe"
+		}
+	}]
+}
