@@ -1,0 +1,23 @@
+{
+  "name": "vue-filter",
+  "version": "0.0.1",
+  "description": "Vue filters",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libs-js/vue-filter.git"
+  },
+  "author": "Zero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/libs-js/vue-filter/issues"
+  },
+  "homepage": "https://github.com/libs-js/vue-filter#readme"
+}
