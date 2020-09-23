@@ -29,3 +29,5 @@ JavaScript & Node.js Libraries.
 - webpack 配置，编译ES6、压缩代码、加AMD CMD包裹层
 - 单元测试 集成测试
 - 一键发布npm和不同的分支
+- 待整理：
+  - [jenkins-deploy](jenkins-deploy) Npm package for local deploy on Jenkins
