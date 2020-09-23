@@ -31,3 +31,8 @@ JavaScript & Node.js Libraries.
 - 一键发布npm和不同的分支
 - 待整理：
   - [jenkins-deploy](jenkins-deploy) Npm package for local deploy on Jenkins
+  - [http-cache](http-cache) http cache middleware
+  - [transfer](transfer) javascript file upload, support broswer and nodejs, use slice and stream to upload big file
+  - [request](request) XMLHttpRequest and http.request, async
+  - [cros](cros) XMLHttpRequest and http.request, async
+  - [vue-filter](vue-filter) Vue filters
